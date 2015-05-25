@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Migration Tracker</title>
+</head>
+<body>
+  <migration-app>Warming up...</migration-app>
+
+<script src="./lib/traceur-runtime.js"></script>
+<script src="./lib/es6-module-loader-sans-promises.js"></script>
+<script src="./lib/Reflect.js"></script>
+<script src="./lib/system.js"></script>
+<script src="./lib/zone.js"></script>
+<script src="./lib/angular2.js"></script>
+
+<script>
+  System.baseURL += 'dev/';
+  System.import('./MigrationApp').catch(function (e) {
+    console.error(e);
+  });
+</script>
+</body>
+</html>

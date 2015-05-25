@@ -1,0 +1,15 @@
+<style>
+  @import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+</style>
+<style>
+  .done{
+    text-decoration: line-through;
+    color : #999999;
+  }
+</style>
+
+<div *ng-for="#todo of todoStore.todos">
+  <input type="checkbox" [checked]="todo.done" (click)="toggleToDoState(todo)"/>
+  <span [class.done]="todo.done">{{todo.text}}</span>
+</div>
