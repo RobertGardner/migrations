@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Migration Tracker</title>
+  <script>
+    var urlParams;
+    (window.onpopstate = function () {
+      var match,
+          pl     = /\+/g,  // Regex for replacing addition symbol with a space
+          search = /([^&=]+)=?([^&]*)/g,
+          decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+          query  = window.location.search.substring(1);
+
+      urlParams = {};
+      while (match = search.exec(query))
+         urlParams[decode(match[1])] = decode(match[2]);
+    })();
+  </script>
+  <link rel="import" href="/bower_components/google-chart/google-chart.html">
+</head>
+
+<body>
+Place: 
+<script>
+  document.write(urlParams["place"])
+</script>
+<br/>
+Decade: 
+<script>
+  document.write(urlParams["decade"])
+</script>
+<br/>
+Direction: 
+<script>
+  document.write(urlParams["dir"])
+</script>
+<br/>
+  <google-chart
+    type='geo'
+    options='{
+        "region": "IT",
+        "displayMode": "markers",
+        "colorAxis": {"colors": ["green", "blue"]}
+      }'
+    data='[
+        ["City",   "Population", "Area"],
+        ["Rome",      2761477,    1285.31],
+        ["Milan",     1324110,    181.76],
+        ["Naples",    959574,     117.27],
+        ["Turin",     907563,     130.17],
+        ["Palermo",   655875,     158.9],
+        ["Genoa",     607906,     243.60],
+        ["Bologna",   380181,     140.7],
+        ["Florence",  371282,     102.41],
+        ["Fiumicino", 67370,      213.44],
+        ["Anzio",     52192,      43.43],
+        ["Ciampino",  38262,      11]
+      ]'>
+  </google-chart>
+</body>
+</html>

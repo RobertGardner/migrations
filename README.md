@@ -9,6 +9,8 @@ cd migrations
 npm install
 # If you don't have gulp already installed:
 npm install -g gulp
+bower install google-chart
+
 gulp serve
 # If big changes, clean and serve again:
 gulp re-serve
