@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <base href="<%= APP_BASE %>">
   <title>Migration Tracker</title>
+  <meta name="description" content="Display migration patterns">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- inject:css -->
+  <!-- endinject -->
 </head>
 <body>
-  <migration-app>Warming up...</migration-app>
+  <app>Loading...</app>
 
-<script src="./lib/traceur-runtime.js"></script>
-<script src="./lib/es6-module-loader-sans-promises.js"></script>
-<script src="./lib/Reflect.js"></script>
-<script src="./lib/system.js"></script>
-<script src="./lib/zone.js"></script>
-<script src="./lib/angular2.js"></script>
+  <!-- inject:js -->
+  <!-- endinject -->
 
-<script>
-  System.baseURL += 'dev/';
-  System.import('./MigrationApp').catch(function (e) {
-    console.error(e);
-  });
-</script>
+  <script src="/init.js?v=<%= VERSION %>"></script>
+
 </body>
 </html>

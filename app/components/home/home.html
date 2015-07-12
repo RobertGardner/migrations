@@ -1,0 +1,36 @@
+<style>
+  @import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+</style>
+
+<div class="form-group">
+  <label for="place" class="control-label">Place:</label>
+  <input #place type="text" class="form-control" id="place" placeholder="County, State" autofocus/>
+</div> 
+<div class="form-group">
+  <label for="decade" class="control-label">Decade:</label>
+  <input #decade type="text" class="form-control" id="decade" placeholder="e.g., 1810"/>
+</div>
+<div class="form-group">
+  <div class="radio">
+    <label>
+      <input #direction type="radio" name="dir" value="in"/>
+      Migrations To
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input #direction type="radio" name="dir" value="out"/>
+      Migrations From
+    </label>
+  </div>
+</div>
+<div class="form-group">
+  <button (click)="add(place, decade, direction)">Go</button>
+</div>
+
+<div>
+  <ul>
+    <li *ng-for="#name of list.get()">{{name}}</li>
+  </ul>
+</div>

@@ -4,11 +4,12 @@
         "target": "es5",
         "module": "commonjs",
         "declaration": false,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "removeComments": true,
         "noLib": false,
         "emitDecoratorMetadata": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "experimentalDecorators": true
     },
     "files": [
         "./app/app.ts",
