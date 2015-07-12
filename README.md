@@ -9,6 +9,8 @@ Displays results of migration analysis in a map.
 npm install -g gulp
 # If you don't have tsd already installed:
 npm install -g tsd@^0.6.0
+# If you don't have bower already installed:
+npm install -g bower
 
 cd migrations
 npm install
