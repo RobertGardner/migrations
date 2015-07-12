@@ -1,13 +1,13 @@
-/// <reference path="../../typings/angular2/angular2.d.ts" />
+/// <reference path="../../../typings/tsd.d.ts" />
 
 import {Component, View, bootstrap} from 'angular2/angular2';
-import {FormBuilder, Validators, formDirectives, ControlGroup, ControlDirective} from 'angular2/forms';
-import {TodoStore, ToDo} from 'services/TodoStore'
+import {FormBuilder, Validators, formDirectives, ControlGroup} from 'angular2/angular2';
+import {TodoStore} from '../../services/TodoStore'
 
 // Annotation section
 @Component({
   selector: 'search-form',
-  appInjector: [FormBuilder]
+  viewInjector: [FormBuilder]
 })
 @View({
   templateUrl: 'templates/search-form.html',

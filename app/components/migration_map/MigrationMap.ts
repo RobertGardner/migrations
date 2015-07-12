@@ -1,7 +1,6 @@
-/// <reference path="../../typings/angular2/angular2.d.ts" />
 import {Component, View, coreDirectives} from 'angular2/angular2';
 
-import {TodoStore, ToDo} from '../services/TodoStore'
+import {TodoStore, ToDo} from '../../services/TodoStore'
 
 @Component({
   selector: 'migration-map',
