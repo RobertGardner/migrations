@@ -2,14 +2,23 @@
   @import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
   @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 </style>
+<style>
+  google-chart {
+    height: 300px;
+    width: 400px;
+  }
+</style>
+
+<script>src="http://googlewebcomponents.github.io/google-chart/components/webcomponentsjs/webcomponents.min.js"</script>
+<link rel="import" href="http://googlewebcomponents.github.io/google-chart/components/google-chart/google-chart.html">
 
 <div class="form-group">
   <label for="place" class="control-label">Place:</label>
-  <input #place type="text" class="form-control" id="place" placeholder="County, State" autofocus/>
+  <input #place type="text" class="form-control" id="place" placeholder="County, State" autofocus (keyup)/>
 </div> 
 <div class="form-group">
   <label for="decade" class="control-label">Decade:</label>
-  <input #decade type="text" class="form-control" id="decade" placeholder="e.g., 1810"/>
+  <input #decade type="text" class="form-control" id="decade" placeholder="e.g., 1810" (keyup)/>
 </div>
 <div class="form-group">
   <div class="radio">
@@ -29,8 +38,38 @@
   <button (click)="add(place, decade, direction)">Go</button>
 </div>
 
+<hr/>
+
 <div>
   <ul>
     <li *ng-for="#name of list.get()">{{name}}</li>
   </ul>
 </div>
+
+<hr/>
+
+Place: {{place.value}}<br/>
+Decade: {{decade.value}}<br/>
+Direction: {{direction.value}}<br/>
+  <google-chart
+    type='geo'
+    options='{
+        "region": "IT",
+        "displayMode": "markers",
+        "colorAxis": {"colors": ["green", "blue"]}
+      }'
+    data='[
+        ["City",   "Population", "Area"],
+        ["Rome",      2761477,    1285.31],
+        ["Milan",     1324110,    181.76],
+        ["Naples",    959574,     117.27],
+        ["Turin",     907563,     130.17],
+        ["Palermo",   655875,     158.9],
+        ["Genoa",     607906,     243.60],
+        ["Bologna",   380181,     140.7],
+        ["Florence",  371282,     102.41],
+        ["Fiumicino", 67370,      213.44],
+        ["Anzio",     52192,      43.43],
+        ["Ciampino",  38262,      11]
+      ]'>
+  </google-chart>
