@@ -15,6 +15,7 @@
         "./app/app.ts",
         "./app/components/about/about.ts",
         "./app/components/home/home.ts",
+        "./app/components/migration-map/migration-map.ts",
         "./app/init.ts",
         "./app/services/NameList.ts",
         "./typings/angular2/angular2.d.ts",
