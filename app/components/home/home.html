@@ -26,7 +26,7 @@
   </div>
 </div>
 <div class="form-group">
-  <button (click)="add(place, decade, direction)">Go</button>
+  <button (click)="showMigrations(place, decade, direction)">Go</button>
 </div>
 
 <hr/>
@@ -39,4 +39,4 @@
 
 <hr/>
 
-<migration-map></migration-map>
+<migration-map [place]="place.value" [decade]="decade.value" [direction]="direction.value"></migration-map>

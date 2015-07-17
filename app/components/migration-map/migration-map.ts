@@ -2,7 +2,8 @@
 import {Component, View} from 'angular2/angular2';
 
 @Component({
-  selector: 'migration-map'
+  selector: 'migration-map',
+  properties: ['place', 'decade', 'direction']
 })
 @View({
   templateUrl: './components/migration-map/migration-map.html?v=<%= VERSION %>',
