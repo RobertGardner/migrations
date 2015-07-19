@@ -1,5 +1,5 @@
 /// <reference path="../../../typings/tsd.d.ts" />
-import {Component, View} from 'angular2/angular2';
+import {Component, View, onChange} from 'angular2/angular2';
 
 @Component({
   selector: 'migration-map',
@@ -7,19 +7,40 @@ import {Component, View} from 'angular2/angular2';
 })
 @View({
   templateUrl: './components/migration-map/migration-map.html?v=<%= VERSION %>',
-  directives: []
+  directives: [],
+  lifecycle: [onChange]
 })
 export class MigrationMap {
   place: string;
   decade: string;
   direction: string;
+  data: Object;
+  options: Object;
 
   constructor() {
   }
 
-  draw(place: string, decade: string, direction: string) {
-    this.place = place;
-    this.decade = decade;
-    this.direction = direction;
+  onChange(changes) {
+    this.options = {
+      "region": "IT",
+      "displayMode": "markers",
+      "colorAxis": { "colors": ["green", "blue"] }
+    };
+    this.data = [
+      // Just use this.place and this.decade as the data labels to test dynamic redraw.
+      // Note: dynamic redraw isn't working. Not sure why not.
+      ["City", this.place, this.decade],
+      ["Rome", 2761477, 1285.31],
+      ["Milan", 1324110, 181.76],
+      ["Naples", 959574, 117.27],
+      ["Turin", 907563, 130.17],
+      ["Palermo", 655875, 158.9],
+      ["Genoa", 607906, 243.60],
+      ["Bologna", 380181, 140.7],
+      ["Florence", 371282, 102.41],
+      ["Fiumicino", 67370, 213.44],
+      ["Anzio", 52192, 43.43],
+      ["Ciampino", 38262, 11]
+    ];
   }
 }

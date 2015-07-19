@@ -14,9 +14,7 @@ export class Home {
   constructor(public list: NamesList) {
   }
 
-  showMigrations(place, decade, direction) {
+  addName(place, decade, direction) {
     this.list.add(place.value + decade.value + direction.value);
-    place.value = '';
-    decade.value = '';
   }
 }
