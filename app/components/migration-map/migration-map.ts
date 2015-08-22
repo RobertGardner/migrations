@@ -1,5 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-import {Component, View, onChange} from 'angular2/angular2';
+import {Component, View, LifecycleEvent} from 'angular2/angular2';
 
 @Component({
   selector: 'migration-map',
@@ -8,7 +7,7 @@ import {Component, View, onChange} from 'angular2/angular2';
 @View({
   templateUrl: './components/migration-map/migration-map.html?v=<%= VERSION %>',
   directives: [],
-  lifecycle: [onChange]
+  lifecycle: [LifecycleEvent.onChange]
 })
 export class MigrationMap {
   place: string;

@@ -30,11 +30,11 @@ gulp build.prod
 Project structure is based on https://github.com/mgechev/angular2-seed
 which is kept up to date with new Angular2 releases.
 Check this github project regularly after Angular2 updates.
-Currently sync'd to alpha.30.
+Currently sync'd to alpha.34
 
 Files taken from angular2-seed:
   .gitignore (added section for migrations-specific components)
-  typings/...
+  tsd_typings/...
   gulpfile.js
   package.json (just devDependencies and dependencies)
   tsconfig.json
