@@ -16,8 +16,14 @@ export class MigrationMap {
   direction: string;
   data: Object;
   options: Object;
+  value: number;
 
   constructor() {
+    this.value = 2761477;
+  }
+
+  refresh(m) {
+    m.drawChart();
   }
 
   onChange(changes) {
@@ -30,7 +36,7 @@ export class MigrationMap {
       // Just use this.place and this.decade as the data labels to test dynamic redraw.
       // Note: dynamic redraw isn't working. Not sure why not.
       ["City", this.place, this.decade],
-      ["Rome", 2761477, 1285.31],
+      ["Rome", this.value, 1285.31],
       ["Milan", 1324110, 181.76],
       ["Naples", 959574, 117.27],
       ["Turin", 907563, 130.17],
@@ -42,5 +48,6 @@ export class MigrationMap {
       ["Anzio", 52192, 43.43],
       ["Ciampino", 38262, 11]
     ];
+    this.value = this.value / 10;
   }
 }

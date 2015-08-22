@@ -14,7 +14,9 @@ Direction: {{direction}}<br/>
 Options: {{options | json}}<br/>
 Data: {{data}}<br/>
 
-<google-chart
+<button (click)="refresh(m)">Refresh</button>
+
+<google-chart #m
   type="geo"
   [options]="options"
   [data]="data">
