@@ -3,6 +3,7 @@ import {RouteConfig, RouterOutlet, RouterLink, routerInjectables} from 'angular2
 
 import {Home} from './components/home/home';
 import {About} from './components/about/about';
+import {MigrationMap} from './components/migration-map/migration-map';
 import {NamesList} from './services/NameList';
 
 @Component({
@@ -11,7 +12,8 @@ import {NamesList} from './services/NameList';
 })
 @RouteConfig([
   { path: '/', component: Home, as: 'home' },
-  { path: '/about', component: About, as: 'about' }
+  { path: '/about', component: About, as: 'about' },
+  { path: '/migrate', component:MigrationMap, as: 'migrate'}
 ])
 @View({
   templateUrl: './app.html?v=<%= VERSION %>',

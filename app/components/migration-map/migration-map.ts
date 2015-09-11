@@ -1,41 +1,36 @@
-import {Component, View, LifecycleEvent} from 'angular2/angular2';
+import {Component, View} from 'angular2/angular2';
 
 @Component({
   selector: 'migration-map',
   properties: ['place', 'decade', 'direction']
 })
 @View({
-  templateUrl: './components/migration-map/migration-map.html?v=<%= VERSION %>',
-  directives: [],
-  lifecycle: [LifecycleEvent.onChange]
+  templateUrl: './components/migration-map/migration-map.html?v=<%= VERSION %>'
 })
 export class MigrationMap {
+  type: string;
   place: string;
   decade: string;
   direction: string;
   data: Object;
   options: Object;
-  value: number;
 
   constructor() {
-    this.value = 2761477;
+    this.type = "pie";
+    this.options = { "title": "Distribution of days in 2001Q1" };
+    this.data = [["Month", "Days"], ["Jan", 31], ["Feb", 28], ["Mar", 31]];
   }
 
-  refresh(m) {
-    m.drawChart();
-  }
-
-  onChange(changes) {
+  refresh() {
+    this.type = "geo";
     this.options = {
       "region": "IT",
       "displayMode": "markers",
       "colorAxis": { "colors": ["green", "blue"] }
     };
     this.data = [
-      // Just use this.place and this.decade as the data labels to test dynamic redraw.
-      // Note: dynamic redraw isn't working. Not sure why not.
-      ["City", this.place, this.decade],
-      ["Rome", this.value, 1285.31],
+      ["City", "Population", "Density"],
+      ["Rome", 3456789, 1285.31],
       ["Milan", 1324110, 181.76],
       ["Naples", 959574, 117.27],
       ["Turin", 907563, 130.17],
@@ -47,6 +42,8 @@ export class MigrationMap {
       ["Anzio", 52192, 43.43],
       ["Ciampino", 38262, 11]
     ];
-    this.value = this.value / 10;
+  }
+
+  addName(place, decade, direction) {
   }
 }
