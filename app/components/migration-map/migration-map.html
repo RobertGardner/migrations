@@ -20,6 +20,7 @@
   <label for="decade" class="control-label">Decade:</label>
   <input #decade type="text" class="form-control" id="decade" placeholder="e.g., 1810"/>
 </div>
+<!--
 <div class="form-group">
   <div class="radio">
     <label>
@@ -34,8 +35,9 @@
     </label>
   </div>
 </div>
+-->
 <div class="form-group">
-  <button (click)="addName(place, decade, direction)">Go</button>
+  <button (click)="refresh()">Go</button>
 </div>
 <hr/>
 
@@ -45,8 +47,7 @@ Direction: {{direction}}<br/>
 Type: {{type}}<br/>
 Options: {{options | json}}<br/>
 Data: {{data}}<br/>
-
-<button (click)="refresh()">Refresh</button>
+Http Response: {{response}}<br/>
 
 <google-chart
   [type]="type"

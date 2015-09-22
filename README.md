@@ -5,10 +5,8 @@ Displays results of migration analysis in a map.
 # How to build and run
 
 ```bash
-# If you don't have gulp already installed:
-npm install -g gulp
-# If you don't have tsd already installed:
-npm install -g tsd@^0.6.0
+# If you don't have gulp and/or tsd already installed:
+npm install -g gulp tsd
 # If you don't have bower already installed:
 npm install -g bower
 
@@ -30,12 +28,11 @@ gulp build.prod
 Project structure is based on https://github.com/mgechev/angular2-seed
 which is kept up to date with new Angular2 releases.
 Check this github project regularly after Angular2 updates.
-Currently sync'd to alpha.34
+Currently sync'd to alpha.37
 
-Files taken from angular2-seed:
+Files not taken from angular2-seed:
   .gitignore (added section for migrations-specific components)
-  tsd_typings/...
-  gulpfile.js
   package.json (just devDependencies and dependencies)
-  tsconfig.json
-  tsd.json
+  app/components/migration-map/
+  Minor changes to:
+  	app.html, app.ts (to add "Migrations" menu)

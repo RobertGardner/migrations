@@ -1,24 +1,32 @@
 import {Component, View} from 'angular2/angular2';
+import {Http, HTTP_BINDINGS} from 'angular2/http';
 
 @Component({
   selector: 'migration-map',
-  properties: ['place', 'decade', 'direction']
+  properties: ['place', 'decade', 'direction'],
+  viewBindings: [HTTP_BINDINGS]
 })
 @View({
   templateUrl: './components/migration-map/migration-map.html?v=<%= VERSION %>'
 })
 export class MigrationMap {
-  type: string;
   place: string;
   decade: string;
   direction: string;
-  data: Object;
+  type: string;
+  data: Object[];
   options: Object;
 
-  constructor() {
+  http: Http;
+  response: string;
+
+  constructor(http: Http) {
     this.type = "pie";
     this.options = { "title": "Distribution of days in 2001Q1" };
     this.data = [["Month", "Days"], ["Jan", 31], ["Feb", 28], ["Mar", 31]];
+
+    this.http = http;
+    this.response = "Nothing fetched yet";
   }
 
   refresh() {
@@ -42,8 +50,11 @@ export class MigrationMap {
       ["Anzio", 52192, 43.43],
       ["Ciampino", 38262, 11]
     ];
-  }
-
-  addName(place, decade, direction) {
+    this.http.get('stuff.html')
+      //Get the RxJS Subject
+      .toRx()
+      // Subscribe to the observable to get the parsed people object and attach it to the
+      // component
+      .subscribe(h => this.response = h.text());
   }
 }
