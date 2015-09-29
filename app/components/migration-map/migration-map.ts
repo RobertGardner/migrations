@@ -20,12 +20,11 @@ export class MigrationMap {
   http: Http;
 
   constructor(http: Http) {
+    this.http = http;
+
     this.type = "pie";
     this.options = { "title": "Distribution of days in 2001Q1" };
     this.data = [["Month", "Days"], ["Jan", 31], ["Feb", 28], ["Mar", 31]];
-
-    this.http = http;
-    this.response = "Nothing fetched yet";
   }
 
   refresh() {
@@ -38,7 +37,7 @@ export class MigrationMap {
       .subscribe(h => this.update(h));
   }
 
-  update(data: Ojbect[]) {
+  update(data: Object[]) {
     this.type = "geo";
     this.options = {
       "region": "IT",
