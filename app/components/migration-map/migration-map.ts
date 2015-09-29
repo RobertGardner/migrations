@@ -3,16 +3,15 @@ import {Http, HTTP_BINDINGS} from 'angular2/http';
 
 @Component({
   selector: 'migration-map',
-  properties: ['place', 'decade', 'direction'],
   viewBindings: [HTTP_BINDINGS]
 })
 @View({
   templateUrl: './components/migration-map/migration-map.html?v=<%= VERSION %>'
 })
 export class MigrationMap {
-  place: string;
-  decade: string;
-  direction: string;
+  place: string = '';
+  decade: string = '';
+  direction: string = '';
   type: string;
   data: Object[];
   options: Object;
@@ -27,7 +26,10 @@ export class MigrationMap {
     this.data = [["Month", "Days"], ["Jan", 31], ["Feb", 28], ["Mar", 31]];
   }
 
-  refresh() {
+  refresh(place: string, decade: string, direction: string) {
+    this.place = place;
+    this.decade = decade;
+    this.direction = direction;
     this.http.get('stuff.html')
       //Get the RxJS Subject
       .toRx()
