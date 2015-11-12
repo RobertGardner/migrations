@@ -30,7 +30,7 @@ export class MigrationMap {
     this.place = place;
     this.decade = decade;
     this.direction = direction;
-    this.http.get('stuff.html')
+    this.http.get(this.buildRequest())
       //Get the RxJS Subject
       .toRx()
       // Call map on the response observable to get the parsed data
@@ -39,10 +39,16 @@ export class MigrationMap {
       .subscribe(h => this.update(h));
   }
 
+  buildRequest(): string {
+    return "stuff.html";
+    // return 'http://www.werelate.org:8000/immigrations?year=' + this.decade + '&place=' + this.place + ',+United+States';
+    // http://www.werelate.org:8000/emigrations?year=1900&place=Utah,+United+States
+  }
+
   update(data: Object[]) {
     this.type = "geo";
     this.options = {
-      "region": "IT",
+      "region": "US",
       "displayMode": "markers",
       "colorAxis": { "colors": ["green", "blue"] }
     };
