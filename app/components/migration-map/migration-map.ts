@@ -48,8 +48,9 @@ export class MigrationMap {
   update(data: Object[]) {
     this.type = "geo";
     this.options = {
-      "region": "US",
-      "displayMode": "markers",
+      "region": "US", // Values: world, US (for US), US-CA (for California)
+      "resolution": "provinces", // Values: countries, provinces, metros 
+      "displayMode": "regions", // Values: regions, markers
       "colorAxis": { "colors": ["green", "blue"] }
     };
     this.data = this.fixupData(data);   
@@ -57,9 +58,9 @@ export class MigrationMap {
 
   fixupData(data: Object[]): Object[][] {
     var fixed = [];
-    fixed.push(["Place", "Count", "Count"]);
+    fixed.push(["Place", "Count"]);
     for (var i = 0; i < data.length; i++) {
-      fixed.push([data[i][0], data[i][1], data[i][1]]);
+      fixed.push([data[i][0], data[i][1]]);
     }
     return fixed;
   }
