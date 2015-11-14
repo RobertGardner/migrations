@@ -52,6 +52,15 @@ export class MigrationMap {
       "displayMode": "markers",
       "colorAxis": { "colors": ["green", "blue"] }
     };
-    this.data = data;   
+    this.data = this.fixupData(data);   
+  }
+
+  fixupData(data: Object[]): Object[][] {
+    var fixed = [];
+    fixed.push(["Place", "Count", "Count"]);
+    for (var i = 0; i < data.length; i++) {
+      fixed.push([data[i][0], data[i][1], data[i][1]]);
+    }
+    return fixed;
   }
 }
