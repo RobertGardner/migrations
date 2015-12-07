@@ -1,10 +1,10 @@
-export class NamesList {
+export class NameList {
   names = ['Dijkstra', 'Knuth', 'Turing', 'Hopper'];
 
-  get() {
+  get(): string[] {
     return this.names;
   }
-  add(value: string) {
+  add(value: string): void {
     this.names.push(value);
   }
 }

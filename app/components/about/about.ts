@@ -1,19 +1,22 @@
-import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
+import {Component, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {NamesList} from '../../services/NameList';
+import {NameList} from '../../services/name_list';
 
 @Component({
-  selector: 'about'
-})
-@View({
-  templateUrl: './components/about/about.html?v=<%= VERSION %>',
+  selector: 'about',
+  templateUrl: './components/about/about.html',
   directives: [CORE_DIRECTIVES]
 })
-export class About {
-  constructor(public list: NamesList) {
+export class AboutCmp {
+  constructor(public list: NameList) {
   }
-  addName(newname) {
+  /*
+  * @param newname  any text as input.
+  * @returns return false to prevent default form submit behavior to refresh the page.
+  */
+  addName(newname): boolean {
     this.list.add(newname.value);
     newname.value = '';
+    return false;
   }
 }

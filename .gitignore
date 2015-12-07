@@ -31,11 +31,13 @@ node_modules
 .lock-wscript
 .tsdrc
 
-#IntelliJ configuration files
+#IDE configuration files
 .idea
+.vscode
 
 dist
 dev
+docs
 lib
 test
-tsd_typings
+tools/typings/tsd

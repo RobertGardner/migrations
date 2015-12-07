@@ -15,13 +15,12 @@ npm install
 bower install google-chart
 
 # dev
-gulp serve.dev
-# prod
-gulp serve.prod
+npm start
 
-# To just build:
-gulp build.dev
-gulp build.prod
+# Other useful commands (see package.json for full list):
+npm run-script build.dev
+npm run-script lint
+npm test
 ```
 
 # Important Note
