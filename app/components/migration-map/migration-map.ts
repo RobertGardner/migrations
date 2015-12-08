@@ -8,6 +8,7 @@ import {Http, HTTP_BINDINGS} from 'angular2/http';
 })
 export class MigrationMapCmp {
   place: string = '';
+  filter: string = '';
   decade: string = '';
   direction: string = '';
   type: string;
@@ -24,8 +25,9 @@ export class MigrationMapCmp {
     this.data = [['Month', 'Days'], ['Jan', 31], ['Feb', 28], ['Mar', 31]];
   }
 
-  refresh(place: string, decade: string, direction: string) {
+  refresh(place: string, filter: string, decade: string, direction: string) {
     this.place = place;
+    this.filter = filter;
     this.decade = decade;
     this.direction = direction;
     this.http.get(this.buildRequest())
@@ -36,9 +38,13 @@ export class MigrationMapCmp {
   }
 
   buildRequest(): string {
-    return 'assets/stuff.html';
-    // return 'http://www.werelate.org:8000/immigrations?year=' + this.decade + '&place=' + this.place + ',+United+States';
-    // http://www.werelate.org:8000/emigrations?year=1900&place=Utah,+United+States
+    var postfix = '';
+    if (this.filter !== '') {
+      postfix = '_' + this.filter;
+    }
+    return 'assets/stuff' + postfix + '.html';
+    // return 'http://www.werelate.org:8000/immigrations?year=1850&place=Utah,+United+States&filter=United+States'
+    // For outgoing, use /emigrations
   }
 
   update(data: Object[]) {
@@ -47,7 +53,7 @@ export class MigrationMapCmp {
       'region': 'US', // Values: world, US (for US), US-CA (for California)
       'resolution': 'provinces', // Values: countries, provinces, metros 
       'displayMode': 'regions', // Values: regions, markers
-      'colorAxis': { 'colors': ['green', 'blue'] }
+    //  'colorAxis': { 'colors': ['green', 'blue'] }
     };
     this.data = this.fixupData(data);
   }

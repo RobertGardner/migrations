@@ -14,7 +14,11 @@
 
 <div class="form-group">
   <label for="place" class="control-label">Place:</label>
-  <input #place_input type="text" class="form-control" id="place" placeholder="County, State" autofocus/>
+  <input #place_input type="text" class="form-control" id="place" placeholder="County, State, Country" autofocus/>
+</div> 
+<div class="form-group">
+  <label for="filter" class="control-label">Filter:</label>
+  <input #filter_input type="text" class="form-control" id="filter" placeholder="County, State, Country" autofocus/>
 </div> 
 <div class="form-group">
   <label for="decade" class="control-label">Decade:</label>
@@ -39,11 +43,12 @@
 -->
 
 <div class="form-group">
-  <button (click)="refresh(place_input.value, decade_input.value, '')">Go</button>
+  <button (click)="refresh(place_input.value, filter_input.value, decade_input.value, '')">Go</button>
 </div>
 <hr/>
 
 Place: {{place}}<br/>
+Filter: {{filter}}<br/>
 Decade: {{decade}}<br/>
 Direction: {{direction}}<br/>
 Type: {{type}}<br/>
