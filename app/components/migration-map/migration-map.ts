@@ -38,22 +38,34 @@ export class MigrationMapCmp {
   }
 
   buildRequest(): string {
+    var dir = (this.direction === '') ? 'immigrations' : 'emigrations';
+    var url = 'http://www.werelate.org:8000/' + dir + '?';
+    url = url + 'year=' + encodeURI(this.decade) + '&place=' + encodeURI(this.place);
+    if (this.filter !== '') {
+      url = url + '&filter=' + this.filter;
+    }
+    // return url;
+
     var postfix = '';
     if (this.filter !== '') {
       postfix = '_' + this.filter;
     }
     return 'assets/stuff' + postfix + '.html';
-    // return 'http://www.werelate.org:8000/immigrations?year=1850&place=Utah,+United+States&filter=United+States'
-    // For outgoing, use /emigrations
   }
 
   update(data: Object[]) {
+    var region = (this.filter === '') ? 'world' : this.filter;
+    var resolution = (region === 'world') ? 'countries' : 'provinces';
+    var mode = (this.filter.indexOf('-') < 0) ? 'regions' : 'markers';
     this.type = 'geo';
     this.options = {
-      'region': 'US', // Values: world, US (for US), US-CA (for California)
-      'resolution': 'provinces', // Values: countries, provinces, metros 
-      'displayMode': 'regions', // Values: regions, markers
-    //  'colorAxis': { 'colors': ['green', 'blue'] }
+      'region': region, // Values: world, US (for US), US-CA (for California)
+      'resolution': resolution, // Values: countries, provinces, metros 
+      'displayMode': mode, // Values: regions, markers
+      'colorAxis': { 'colors': ['green'] },
+      'backgroundColor': '#81d4fa',
+      'datalessRegionColor': '#f8bbd0',
+      'defaultColor': '#f5f5f5'
     };
     this.data = this.fixupData(data);
   }
