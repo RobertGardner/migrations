@@ -12,13 +12,17 @@
 <script>src="http://googlewebcomponents.github.io/google-chart/components/webcomponentsjs/webcomponents.min.js"</script>
 <link rel="import" href="http://googlewebcomponents.github.io/google-chart/components/google-chart/google-chart.html">
 
+Make sure you load Home page before this page. If map fails to redraw, go to Home, refresh the
+browser page, then click Migrations and try again.
 <div class="form-group">
   <label for="place" class="control-label">Place:</label>
   <input #place_input type="text" class="form-control" id="place" placeholder="County, State, Country" autofocus/>
 </div> 
 <div class="form-group">
   <label for="filter" class="control-label">Filter:</label>
-  <input #filter_input type="text" class="form-control" id="filter" placeholder="'', 'US', 'US-xx'" autofocus/>
+  <select [(ng-model)]="filter" class="form-control" id="filter">
+    <option *ng-for="#k of filterKeys" [value]="k">{{filters[k]}}</option>
+  </select>
 </div> 
 <div class="form-group">
   <label for="decade" class="control-label">Decade:</label>
@@ -43,10 +47,17 @@
 -->
 
 <div class="form-group">
-  <button (click)="refresh(place_input.value, filter_input.value, decade_input.value, '')">Go</button>
+  <button (click)="refresh(place_input.value, decade_input.value, '')">Go</button> (click me twice)
 </div>
 <hr/>
 
+<google-chart
+  [type]="type"
+  [options]="options"
+  [data]="data">
+</google-chart>
+
+<hr/>
 Place: {{place}}<br/>
 Filter: {{filter}}<br/>
 Decade: {{decade}}<br/>
@@ -54,9 +65,3 @@ Direction: {{direction}}<br/>
 Type: {{type}}<br/>
 Options: {{options | json}}<br/>
 Data: {{data}}<br/>
-
-<google-chart
-  [type]="type"
-  [options]="options"
-  [data]="data">
-</google-chart>
