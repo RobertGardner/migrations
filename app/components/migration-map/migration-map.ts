@@ -1,10 +1,10 @@
-import {Component} from 'angular2/angular2';
-import {Http, HTTP_BINDINGS} from 'angular2/http';
+import {Component} from 'angular2/core';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
   selector: 'migration-map',
-  viewBindings: [HTTP_BINDINGS],
-  templateUrl: './components/migration-map/migration-map.html'
+  templateUrl: './components/migration-map/migration-map.html',
+  viewBindings: [HTTP_PROVIDERS]
 })
 export class MigrationMapCmp {
   filters: Object;
@@ -88,11 +88,12 @@ export class MigrationMapCmp {
     this.place = place;
     this.decade = decade;
     this.direction = direction;
+
+    var o = this.http.get(this.buildRequest());
+    o.subscribe(h => this.update(h.json()));
+    return;
     this.http.get(this.buildRequest())
-      // Call map on the response observable to get the parsed data
-      .map(res => res.json())
-      // Subscribe to the observable to get the parsed data and attach it to the component
-      .subscribe(h => this.update(h));
+        .subscribe(res => this.update(res.json()));
   }
 
   buildRequest(): string {
@@ -103,12 +104,6 @@ export class MigrationMapCmp {
       url = url + '&filter=' + this.filters[this.filter];
     }
     return url;
-
-    var postfix = '';
-    if (this.filter !== '') {
-      postfix = '_' + this.filter;
-    }
-    return 'assets/stuff' + postfix + '.html';
   }
 
   update(data: Object[]) {
