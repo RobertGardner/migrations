@@ -89,14 +89,20 @@ export class MigrationMapCmp {
     this.decade = decade;
     this.direction = direction;
 
-    var o = this.http.get(this.buildRequest());
-    o.subscribe(h => this.update(h.json()));
-    return;
     this.http.get(this.buildRequest())
         .subscribe(res => this.update(res.json()));
   }
 
   buildRequest(): string {
+    var debug = true; // Set to true to serve files in assets/stuffXXX.html
+    if (debug) {
+      var postfix = '';
+      if (this.filter !== '') {
+        postfix = '_' + this.filter;
+      }
+      return './assets/stuff' + postfix + '.html';
+    }
+
     var dir = (this.direction === '') ? 'immigrations' : 'emigrations';
     var url = 'http://www.werelate.org:8000/' + dir + '?';
     url = url + 'year=' + encodeURI(this.decade) + '&place=' + encodeURI(this.place);
